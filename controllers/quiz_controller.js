@@ -27,7 +27,7 @@ exports.index = function (req, res) {
         search = search + req.query.search.replace(' ', '%') + '%';
     }
     console.log("search: " + search)
-    models.Quiz.findAll({where: ["pregunta like ?", search]}).success(function(quizes) {
+    models.Quiz.findAll({where: ["pregunta like ?", search], order: "pregunta"}).success(function(quizes) {
         res.render('quizes/index.ejs', {quizes: quizes});
     });
 };
